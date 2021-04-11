@@ -1,0 +1,88 @@
+// -----------------------------------
+// Controlling LEDs over the Internet
+// -----------------------------------
+
+/* First, let's create our "shorthand" for the pins
+Same as in the Blink an LED example:
+led1 is D6, led2 is D7 */
+
+int led1 = D6;
+int led2 = D7;
+// Last time, we only needed to declare pins in the setup function.
+// This time, we are also going to register our Particle function
+
+void setup()
+{
+
+   // Here's the pin configuration, same as last time
+   pinMode(led1, OUTPUT);
+   pinMode(led2, OUTPUT);
+
+
+   // For good measure, let's also make sure both LEDs are off when we start:
+   digitalWrite(led1, LOW);
+   digitalWrite(led2, LOW);
+    
+}
+
+
+/* Last time, we wanted to continously blink the LED on and off
+Since we're waiting for input through the cloud this time,
+we don't actually need to put anything in the loop */
+
+void loop()
+{
+      //Print E    
+     flashE();
+     flashR();
+     flashI();
+     flashC();
+    
+}
+
+
+void flashE() {
+     dot();
+     delay(1000);
+}
+
+void flashR() {
+     dot();
+     dash();
+     dot();
+     delay(1000);
+}
+
+void flashI() {
+     dot();
+     dot();
+     delay(1000);
+}
+void flashC() {
+      dash();
+      dot();
+      dash();
+      dot();
+      delay(1000);
+}
+
+void dot() {
+      digitalWrite(led1,HIGH);
+      digitalWrite(led2,HIGH);
+      
+      delay(200);
+      
+      digitalWrite(led1,LOW);
+      digitalWrite(led2,LOW);
+       delay(100);
+}
+
+void dash() {
+      digitalWrite(led1,HIGH);
+      digitalWrite(led2,HIGH);
+      delay(500);
+      
+      digitalWrite(led1,LOW);
+      digitalWrite(led2,LOW);
+       delay(100);
+}
